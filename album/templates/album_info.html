@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+
+    <div class="main-container-album">
+    <h1 class="main-title-album">{{ object.album }} - {{ object.year }}</h1>
+    <h2 class="sub-title-album">By: {{ object.band_name }}</h2>
+    <div class="album-details">
+        <div class="album-grid">
+        {% if object.cover %}
+            <img class="cover-detail" src="{{ object.cover.url }}" width="300px" height="300px">
+        {% else %}
+            <img class="cover-detail" src="{% static 'img/not_found.jpg' %}" width="300px" height="300px">
+        {% endif %}
+        <div class="album-tracks">
+          <h3>Tracks:</h3>
+          <ul class="tracks">
+            <li>{{ object.tracks }}</li>
+          </ul>
+    </script>
+        </div>
+        <div class="album-lineup">
+          <h3>Lineup:</h3>
+          <ul class="lineup">
+            <li>{{ object.lineup }}</li>
+          </ul>
+        </div>
+      </div>
+      <p class="album-notes"><span class="strong">Additional Notes:</span> {{ object.notes }}</p>
+    </div>
+    <div class="grid-btn">
+      <ul class="grid-flex">
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'album_edit' pk=object.pk %}" class="btn">EDIT</a></li>
+        <li><a href="{% url 'album_delete' pk=object.pk %}" class="btn">DELETE</a></li>
+        {% endif %}
+        <li><a href="{% url 'home' %}" class="btn">BACK TO HOME</a></li>
+      </ul>
+    </div>
+  </div>
+{% endblock %}

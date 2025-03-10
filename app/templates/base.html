@@ -1,0 +1,54 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Vinyl Collection</title>
+  <meta name="description" content="My Vinyl Collection developed by Marcos Neves">
+  <link href="{% static 'css/style.css' %}" rel="stylesheet"  type="text/css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kumar+One&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <header class="cor-p2-bg">
+  	<div class="container">
+      <div class="header">
+        <a href="{% url 'home' %}"><img src="{% static 'img/logo.svg' %}" alt="Logo My Vinyl Collection"></a>        
+      </div>
+      <nav class="menu-bottom">
+        <ul class="header-menu font-1">
+          <li><a href="{% url 'bands' %}">Bands</a></li>
+          <li><a href="{% url 'genres' %}">Genres</a></li>
+          {% if not user.is_authenticated %}
+          <li><a href="{% url 'login' %}">Login</a></li>
+          {% endif %}
+          {% if user.is_authenticated %}
+          <li><a href="{% url 'new_album' %}">Add Album</a></li>
+          <li><a href="{% url 'logout' %}">Logout</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+    </div>
+  </header>
+  
+  <main class="cor-p4-bg">
+    {% block content %}
+    {% endblock %}
+  </main>
+  
+  <footer class="cor-p2-bg">
+  	<div class="footer-container">
+      <div class="footer-grid">
+        <a class="logo-footer" href="{% url 'home' %}"><img src="{% static 'img/logo_rodape.png' %}"></a>
+        <h3 class="cor-p5 developed">Developed by Marcos Neves</h3>
+        <img class="icon-insta" src="{% static 'img/icon_insta.svg' %}" alt="Instagram">
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+  <div class="main-container">
+    <div class="main-container-edit">
+      <h1 class="font-2">ALBUM UPDATE</h1>
+      <form class="form-edit" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table class="font-5">
+          {{ form.as_table }}
+        </table>
+        <div class="buttons-container">
+          <div class="grid-flex">
+            <input type="submit" value="Save" class="btn">
+            <a href="{% url 'album_delete' pk=object.pk %}" class="btn">Delete</a>
+            <a href="{% url 'home' %}" class="btn">BACK TO HOME</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

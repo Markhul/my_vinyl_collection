@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+<div class="main-container">
+  <div class="main-container-new">
+    <div class="center">
+      <h1 class="font-2">ADD NEW BAND</h1>
+      <form class="form-new font-5" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_table }}
+        <div class="center-btn">
+          <input class="btn-new" type="submit" value="SAVE">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

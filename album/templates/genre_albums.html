@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+    <div class="main-container-album">
+      <h1 class="main-title-album">{{ object.genre }}</h1>
+      
+      <div class="band-container">
+          <ul class="band-list">
+            {% for genres in bd %}
+              <li>{{ genres.album }} - {{ genres.year }}</li>
+              <li><img class="cover-detail" src="{{ genres.cover.url }}" width="300px" height="300px"></li>
+              
+            {% endfor %}
+          </ul>
+          <div class="grid-btn">
+            <a href="{% url 'home' %}" class="btn">BACK TO HOME</a>    
+          </div>  
+      </div>
+    </div>
+{% endblock %}
